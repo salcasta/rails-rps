@@ -44,4 +44,25 @@ class GameController < ApplicationController
 
     render({ :template => "game_templates/play_paper" })
   end
+
+  def scissors 
+    plays = ["rock", "paper", "scissors"]
+
+    user_play = "scissors"
+    computer_play = plays.sample
+
+    if user_play == computer_play
+      outcome = "We tied!"
+    elsif computer_play == "rock"
+      outcome = "We lost!"
+    elsif computer_play == "paper"
+      outcome = "We won!"
+    end
+
+    @user = user_play
+    @computer = computer_play
+    @result = outcome
+
+    render({ :template => "game_templates/play_scissors" })
+  end
 end
