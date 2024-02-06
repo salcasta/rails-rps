@@ -4,8 +4,26 @@ class GameController < ApplicationController
   end
 
   def rock
-    @random_move = ["rock", "paper", "scissors"].sample
+  plays = ["rock", "paper", "scissors"]
 
-    render({ :template => "game_templates/play_rock" })
+  user_play = "rock"
+  computer_play = plays.sample
+
+  if user_play == computer_play
+    outcome = "We tied!"
+  elsif computer_play == "paper"
+    outcome = "We lost!"
+  elsif computer_play == "scissors"
+    outcome = "We won!"
+  end
+
+
+  outcome = "#{outcome}"
+
+  @user = user_play
+  @computer = computer_play
+  @result = outcome
+
+  render({ :template => "game_templates/play_rock" })
   end
 end
